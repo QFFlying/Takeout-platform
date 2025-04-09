@@ -8,6 +8,8 @@ import com.sky.result.PageResult;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Select;
 
+import java.util.List;
+
 @Mapper
 public interface SetmealMapper {
 
@@ -32,4 +34,22 @@ public interface SetmealMapper {
      * @return
      */
     PageResult pageQuary(SetmealPageQueryDTO setmealPageQueryDTO);
+
+    /**
+     * 根据主键查询套餐
+     * @param id
+     * @return
+     */
+    @Select("select * from setmeal where id = #{id}")
+    Setmeal getById(Long id);
+
+    /**
+     * 根据套餐id集合批量删除套餐数据
+     * @param id
+     * @return
+     */
+    Setmeal deleteById(List<Long> id);
+
+
+
 }
